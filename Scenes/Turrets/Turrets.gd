@@ -1,5 +1,6 @@
 extends Node2D
 
+var type
 var enemy_array = []
 var built : bool = false
 var enemy
@@ -7,7 +8,7 @@ var enemy
 
 func _ready() -> void:
 	if built:
-		self.get_node("Range/CollisionShape2D").get_shape().radius = 0.5 * GameData.tower_data[self.get_name()]["range"]
+		self.get_node("Range/CollisionShape2D").get_shape().radius = 0.5 * GameData.tower_data[type]["range"]
 
 
 func _physics_process(delta: float) -> void:
@@ -33,7 +34,6 @@ func select_enemy():
 
 func _on_Range_body_entered(body: Node) -> void:
 	enemy_array.append(body.get_parent())
-	print(enemy_array)
 
 
 func _on_Range_body_exited(body: Node) -> void:
