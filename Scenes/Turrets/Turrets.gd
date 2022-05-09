@@ -4,6 +4,7 @@ var type
 var enemy_array = []
 var built : bool = false
 var enemy
+var ready : bool = true
 
 
 func _ready() -> void:
@@ -15,6 +16,8 @@ func _physics_process(delta: float) -> void:
 	if enemy_array.size() != 0 and built:
 		select_enemy()
 		turn()
+		if ready:
+			fire()
 	else:
 		enemy = null
 
@@ -31,6 +34,12 @@ func select_enemy():
 	var enemy_index = enemy_progress_array.find(max_offset) # finds the enemy closest to the end
 	enemy = enemy_array[enemy_index] # sets enemy to be the closest one to the end
 
+
+func fire():
+	ready = false
+	enemy.on_hit(GameData.tower_data[type]["damage"])
+	yield(get_tree().create_timer(GameData.tower_data[type]["rof"]), "timeout")
+	ready = true
 
 func _on_Range_body_entered(body: Node) -> void:
 	enemy_array.append(body.get_parent())
