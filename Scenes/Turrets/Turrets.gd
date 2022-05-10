@@ -1,6 +1,7 @@
 extends Node2D
 
 var type
+var category
 var enemy_array = []
 var built : bool = false
 var enemy
@@ -37,6 +38,11 @@ func select_enemy():
 
 func fire():
 	ready = false
+	if category == "Projectile":
+		fire_gun()
+	if category == "Missile":
+		fire_missile()
+	
 	enemy.on_hit(GameData.tower_data[type]["damage"])
 	yield(get_tree().create_timer(GameData.tower_data[type]["rof"]), "timeout")
 	ready = true
@@ -47,4 +53,14 @@ func _on_Range_body_entered(body: Node) -> void:
 
 func _on_Range_body_exited(body: Node) -> void:
 	enemy_array.erase(body.get_parent())
+
+
+func fire_gun():
+	$AnimationPlayer.play("Fire")
+
+
+func fire_missile():
+	pass
+
+
 
