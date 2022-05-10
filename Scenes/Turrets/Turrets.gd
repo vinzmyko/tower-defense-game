@@ -16,7 +16,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if enemy_array.size() != 0 and built:
 		select_enemy()
-		turn()
+		if not $AnimationPlayer.is_playing(): # only turns after the animation is finished
+			turn()
 		if ready:
 			fire()
 	else:
