@@ -3,9 +3,13 @@ extends PathFollow2D
 var speed = 150
 var hp = 50
 
+
+signal base_damage(damage)
+
 onready var health_bar = $HealthBar
 onready var impact_area = $Impact
 var projectile_impact = preload("res://Scenes/SupportScenes/ProjectileImpact.tscn")
+var base_damage = 21
 
 func _ready() -> void:
 	health_bar.max_value = hp
@@ -13,6 +17,9 @@ func _ready() -> void:
 	health_bar.set_as_toplevel(true)
 
 func _physics_process(delta: float) -> void:
+	if unit_offset == 1.0: # unit_offset is how along the path the object has traveled
+		emit_signal("base_damage", base_damage)
+		queue_free()
 	move(delta)
 
 func move(delta):
