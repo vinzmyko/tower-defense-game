@@ -1,0 +1,9 @@
+What I learned from following this tutorial:
+    - I learnt a lot about using control nodes and position them, helping with using
+    - I learnt some stuff about inheritance on the script level
+    - [Part 4 on tutorial]I learn about unhandled_ui_input, in which it is the catches all the input that doesn't occur on the UI layer, meaning you use it when you can to listen for mouse input. 
+    You use this when you want to click on an object, this won't work initially because Control > Mouse > Filter = Stop. So you need to change this to ontrol > Mouse > Filter = Ignore.
+    - [Part 4 on tutorial] I learnt how to click on an object and take it with you and it will show up and follow you mouse.
+    - I learnt some aspects of themes in Godot
+    - I learnt how he managed game scenes with a Scenehandler node, which is the start node that you run. This node runs all the scenes so it will load main_menu at the start and then it will
+    handle the game level scenes, so it will handle everything related to the scenes and its changing process.
